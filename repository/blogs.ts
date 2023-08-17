@@ -1,6 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
-import AuthService from '../services/auth';
-import { Blog, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { CreateBlogDTO } from '../models/dto/blog/create-blog.dto';
 import { UpdateBlogDTO } from '../models/dto/blog/update-blog.dto';
 

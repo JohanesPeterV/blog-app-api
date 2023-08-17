@@ -39,7 +39,7 @@ export default class BlogsController {
   }
   static async updateBlog(req: Request, res: Response, next: NextFunction) {
     const blogId = req.params.id;
-    const { title, content, userId, userUserName } = req.body as CreateBlogDTO;
+    const { title, content } = req.body as CreateBlogDTO;
 
     try {
       const updatedBlog = await BlogService.update(blogId, {

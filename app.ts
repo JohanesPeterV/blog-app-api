@@ -3,7 +3,6 @@ import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 
 import indexRouter from './routes';
-import usersRouter from './routes/users';
 import authRouter from './routes/auth';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -23,7 +22,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/blogs', blogRouter);
 

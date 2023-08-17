@@ -1,5 +1,3 @@
-import { Request, Response, NextFunction } from 'express';
-import AuthService from './auth';
 import BlogsRepository from '../repository/blogs';
 import { CreateBlogDTO } from '../models/dto/blog/create-blog.dto';
 import { UpdateBlogDTO } from '../models/dto/blog/update-blog.dto';

@@ -1,6 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
 import AuthController from '../controllers/auth';
-import AuthMiddleware from '../middlewares/auth';
 
 const router = express.Router();
 
