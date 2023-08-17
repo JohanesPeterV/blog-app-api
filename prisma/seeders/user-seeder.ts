@@ -1,6 +1,7 @@
 import argon2 from 'argon2';
 import { PrismaClient } from '.prisma/client';
 import { userSeedList } from './user-seeder-data';
+import { UserSeed } from './models/user-seed';
 
 export default class UserSeeder {
   public prisma: PrismaClient;

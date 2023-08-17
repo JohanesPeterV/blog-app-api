@@ -1,4 +1,4 @@
-declare type UserSeed = {
+export type UserSeed = {
   userName: string;
   name: string;
   email: string;

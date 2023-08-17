@@ -1,16 +1,37 @@
-## AllNewAtlantis Front-End
+# Blogging Platform Backend
 
-This is a Blog Posting Application.
+This backend application is built using Node.js, Express.js, Prisma.js and PostgreSQL to provide an API for creating, managing, and retrieving blog posts.
 
-## Database
+## Getting Started
 
-## Layers
+To run the application locally, follow these steps:
 
-This is the layers used in the development process.
+1. Install Node.js and npm.
+2. Install dependencies by running `yarn`.
+3. Copy .env.example and change it into .env.
+4. Set up a PostgreSQL database and update the connection configuration in .env.
+5. Choose application secret by updating .env.
+6. Run npx prisma migrate dev
+7. Run the application using `yarn start`.
 
-- Controller
-  Responsible for handling incoming requests from clients, processing them, and sending back appropriate responses. Acts as an interface between the client/user and the application's logic.
-- Service
-  Contains the core business logic of the application.
-- Repository
-  Responsible for managing data storage and retrieval.
+## Design Decisions
+
+### Database Schema
+
+The database schema include the following tables:
+
+- `users`: Stores user information including username, email, and password.
+- `blogs`: Stores blog posts with fields for title, content, author, creation date, and category.
+
+### Authentication and Authorization
+
+We implemented JWT-based authentication and authorization. Users can only modify their own posts. Authorization is managed through JWT tokens and middleware.
+
+## API Endpoints
+
+### Creating a New Blog Post
+
+- Method: POST
+- Route: `/posts`
+- Description: Creates a new blog post.
+- Request Body:

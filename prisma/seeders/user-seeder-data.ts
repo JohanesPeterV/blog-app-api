@@ -1,3 +1,5 @@
+import { UserSeed } from './models/user-seed';
+
 export const userSeedList: UserSeed[] = [
   {
     email: 'johanespeter.jp@gmail.com',
