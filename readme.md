@@ -11,8 +11,9 @@ To run the application locally, follow these steps:
 3. Copy .env.example and change it into .env.
 4. Set up a PostgreSQL database and update the connection configuration in .env.
 5. Choose application secret by updating .env.
-6. Run npx prisma migrate dev to initialize database and run seeder.
-7. Run the application using `yarn start`.
+6. Run `npx prisma migrate dev` to initialize database.
+7. Run `npx prisma db seed` to run seeder.
+8. Run the application using `yarn start`.
 
 ## Design Decisions
 
