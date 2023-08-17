@@ -9,18 +9,10 @@ router.post('', authMiddleware, BlogsController.create);
 
 router.get('', BlogsController.getAll);
 
-router.get('/:id', BlogsController.getOne);
+router.get('/:id', BlogsController.getById);
 
-router.put(
-  '/:id',
-  [authMiddleware, blogMiddleware],
-  BlogsController.updateBlog
-);
+router.put('/:id', [authMiddleware, blogMiddleware], BlogsController.update);
 
-router.delete(
-  '/:id',
-  [authMiddleware, blogMiddleware],
-  BlogsController.deleteBlog
-);
+router.delete('/:id', [authMiddleware, blogMiddleware], BlogsController.delete);
 
 export default router;

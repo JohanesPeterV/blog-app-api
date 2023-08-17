@@ -21,7 +21,7 @@ export default class BlogsRepository {
       },
     });
   }
-  static get(id: string) {
+  static getById(id: string) {
     return prisma.blog.findFirst({
       where: {
         id: id,

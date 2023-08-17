@@ -22,10 +22,10 @@ export default class BlogsController {
     }
   }
 
-  static async getOne(req: Request, res: Response, next: NextFunction) {
+  static async getById(req: Request, res: Response, next: NextFunction) {
     const blogId = req.params.id;
     try {
-      const blog = await BlogService.get(blogId);
+      const blog = await BlogService.getById(blogId);
       if (!blog) {
         return res.status(404).json({ message: 'Blog not found' });
       }
@@ -37,7 +37,7 @@ export default class BlogsController {
         .json({ message: 'An error occurred while fetching the blog' });
     }
   }
-  static async updateBlog(req: Request, res: Response, next: NextFunction) {
+  static async update(req: Request, res: Response, next: NextFunction) {
     const blogId = req.params.id;
     const { title, content } = req.body as CreateBlogDTO;
 
@@ -58,7 +58,7 @@ export default class BlogsController {
     }
   }
 
-  static async deleteBlog(req: Request, res: Response, next: NextFunction) {
+  static async delete(req: Request, res: Response, next: NextFunction) {
     const blogId = req.params.id;
 
     try {

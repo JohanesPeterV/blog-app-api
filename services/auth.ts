@@ -2,16 +2,17 @@ import argon2 from 'argon2';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import UserRepository from '../repository/users';
 import { UserInputDTO } from '../models/dto/user-input.dto';
+import { LoginDTO } from '../models/dto/login.dto';
 
 export default class AuthService {
-  static async login(email: string, password: string) {
-    const user = await UserRepository.findUserByEmail(email);
+  static async login(loginDTO: LoginDTO) {
+    const user = await UserRepository.findUserByEmail(loginDTO.email);
 
     if (!user) {
       return null;
     }
 
-    const passwordValid = await argon2.verify(user.password, password);
+    const passwordValid = await argon2.verify(user.password, loginDTO.password);
 
     if (!passwordValid) {
       return null;
@@ -20,8 +21,9 @@ export default class AuthService {
     return user;
   }
 
-  static generateToken(user: JwtPayload, expiresIn: string) {
+  static generateToken(user: JwtPayload) {
     const secretToken = process.env.SECRET_TOKEN ?? '';
+    const expiresIn = '1h';
     return jwt.sign(user, secretToken, { expiresIn });
   }
 

@@ -14,8 +14,8 @@ export default class BlogService {
     return BlogsRepository.add(blog);
   }
 
-  public static get(id: string) {
-    return BlogsRepository.get(id);
+  public static getById(id: string) {
+    return BlogsRepository.getById(id);
   }
 
   public static update(id: string, blog: Partial<UpdateBlogDTO>) {
