@@ -25,7 +25,7 @@ export default class AuthService {
     return jwt.sign(user, secretToken, { expiresIn });
   }
 
-  static async registerUser(userData: UserInputDTO) {
+  static async register(userData: UserInputDTO) {
     const hashedPassword = await argon2.hash(userData.password);
     const newUser = { ...userData, password: hashedPassword };
     return UserRepository.createUser(newUser);

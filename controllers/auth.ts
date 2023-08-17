@@ -37,7 +37,7 @@ export default class AuthController {
         .json({ message: "Password and Confirm Password doesn't match" });
     }
     try {
-      const user = await AuthService.registerUser(userInputDTO);
+      const user = await AuthService.register(userInputDTO);
       const tokenDuration = '1h';
       const token = AuthService.generateToken(
         { userId: user.id, userUserName: user.userName },
