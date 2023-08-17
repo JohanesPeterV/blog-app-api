@@ -1,16 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 import BlogService from '../services/blogs';
-import { BlogInputDTO } from '../dto/blog-input.dto';
+import { CreateBlogDTO } from '../models/dto/blog/create-blog.dto';
 
 export default class BlogsController {
   static async create(req: Request, res: Response, next: NextFunction) {
-    const { title, content } = req.body as BlogInputDTO;
+    const { title, content } = req.body as CreateBlogDTO;
 
     try {
       const createdBlog = await BlogService.add({
         title,
         content,
         userId: req.userId,
+        userUserName: req.userUserName,
       });
       return res.status(201).json(createdBlog);
     } catch (error) {
@@ -38,10 +39,15 @@ export default class BlogsController {
   }
   static async updateBlog(req: Request, res: Response, next: NextFunction) {
     const blogId = req.params.id;
-    const blogInputDTO = req.body as BlogInputDTO;
+    const { title, content, userId, userUserName } = req.body as CreateBlogDTO;
 
     try {
-      const updatedBlog = await BlogService.update(blogId, blogInputDTO);
+      const updatedBlog = await BlogService.update(blogId, {
+        title,
+        content,
+        userId,
+        userUserName,
+      });
       if (!updatedBlog) {
         return res.status(404).json({ message: 'Blog not found' });
       }

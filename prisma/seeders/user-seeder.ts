@@ -2,10 +2,11 @@ import argon2 from 'argon2';
 import { PrismaClient } from '.prisma/client';
 import { userSeedList } from './user-seeder-data';
 import { UserSeed } from './models/user-seed';
+import { BlogUser } from '../../models/blog-user';
 
 export default class UserSeeder {
   public prisma: PrismaClient;
-  public userIdList: string[] = [];
+  public userList: BlogUser[] = [];
   constructor(prisma: PrismaClient) {
     this.prisma = prisma;
   }
@@ -14,7 +15,7 @@ export default class UserSeeder {
     for (const userSeed of userSeedList) {
       await this.upsert(userSeed);
     }
-    return this.userIdList;
+    return this.userList;
   }
 
   async upsert(userSeed: UserSeed) {
@@ -27,6 +28,9 @@ export default class UserSeeder {
       create: userSeed,
     });
 
-    this.userIdList.push(user.id);
+    this.userList.push({
+      userId: user.id,
+      userUserName: user.userName,
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { PrismaClient } from '.prisma/client';
-import { UserInputDTO } from '../dto/user-input.dto';
+import { UserInputDTO } from '../models/dto/user-input.dto';
 
 const prisma = new PrismaClient();
 

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const token = (req.header('Authorization') ?? '').split(' ')[1];
 
@@ -10,8 +10,9 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const decoded = jwt.verify(token, secretToken) as { userId: string };
+    const decoded = jwt.verify(token, secretToken) as JwtPayload;
     req.userId = decoded.userId;
+    req.userUserName = decoded.userUserName;
     next();
   } catch (error) {
     console.error('Token verification error:', error);

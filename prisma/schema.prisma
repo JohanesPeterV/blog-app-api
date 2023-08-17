@@ -20,11 +20,12 @@ model User {
 }
 
 model Blog {
-  id        String   @id @default(uuid())
-  title     String
-  content   String
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id           String   @id @default(uuid())
+  title        String
+  content      String
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  userUserName String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
 }

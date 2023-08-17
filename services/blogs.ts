@@ -1,14 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 import AuthService from './auth';
 import BlogsRepository from '../repository/blogs';
-import { BlogInputDTO } from '../dto/blog-input.dto';
+import { CreateBlogDTO } from '../models/dto/blog/create-blog.dto';
+import { UpdateBlogDTO } from '../models/dto/blog/update-blog.dto';
 
 export default class BlogService {
   public static getAll(page: number, pageSize: number) {
     return BlogsRepository.getAll(page, pageSize);
   }
 
-  public static add(blog: BlogInputDTO) {
+  public static add(blog: CreateBlogDTO) {
     return BlogsRepository.add(blog);
   }
 
@@ -16,7 +17,7 @@ export default class BlogService {
     return BlogsRepository.get(id);
   }
 
-  public static update(id: string, blog: Partial<BlogInputDTO>) {
+  public static update(id: string, blog: Partial<UpdateBlogDTO>) {
     return BlogsRepository.update(id, blog);
   }
 

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import AuthService from '../services/auth';
-import { UserInputDTO } from '../dto/user-input.dto';
+import { UserInputDTO } from '../models/dto/user-input.dto';
 
 export default class AuthController {
   static async login(req: Request, res: Response, next: NextFunction) {
@@ -14,7 +14,10 @@ export default class AuthController {
       }
 
       const tokenDuration = '1h';
-      const token = AuthService.generateToken(user.id, tokenDuration);
+      const token = AuthService.generateToken(
+        { userId: user.id, userUserName: user.userName },
+        tokenDuration
+      );
 
       return res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
@@ -36,7 +39,10 @@ export default class AuthController {
     try {
       const user = await AuthService.registerUser(userInputDTO);
       const tokenDuration = '1h';
-      const token = AuthService.generateToken(user.id, tokenDuration);
+      const token = AuthService.generateToken(
+        { userId: user.id, userUserName: user.userName },
+        tokenDuration
+      );
       return res
         .status(201)
         .json({ message: 'User registered successfully', token });

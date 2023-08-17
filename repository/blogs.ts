@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import AuthService from '../services/auth';
 import { Blog, PrismaClient } from '@prisma/client';
-import { BlogInputDTO } from '../dto/blog-input.dto';
+import { CreateBlogDTO } from '../models/dto/blog/create-blog.dto';
+import { UpdateBlogDTO } from '../models/dto/blog/update-blog.dto';
 
 const prisma = new PrismaClient();
 export default class BlogsRepository {
@@ -12,7 +13,7 @@ export default class BlogsRepository {
       take: pageSize,
     });
   }
-  static add(blog: BlogInputDTO) {
+  static add(blog: CreateBlogDTO) {
     return prisma.blog.create({
       data: {
         ...blog,
@@ -26,12 +27,13 @@ export default class BlogsRepository {
       },
     });
   }
-  static update(id: string, blog: Partial<BlogInputDTO>) {
+  static update(id: string, blog: Partial<UpdateBlogDTO>) {
     return prisma.blog.update({
       where: {
         id: id,
       },
       data: blog,
+      include: {},
     });
   }
   static delete(id: string) {

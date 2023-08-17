@@ -1,7 +1,7 @@
 import argon2 from 'argon2';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import UserRepository from '../repository/users';
-import { UserInputDTO } from '../dto/user-input.dto';
+import { UserInputDTO } from '../models/dto/user-input.dto';
 
 export default class AuthService {
   static async login(email: string, password: string) {
@@ -20,9 +20,9 @@ export default class AuthService {
     return user;
   }
 
-  static generateToken(userId: number | string, expiresIn: string) {
+  static generateToken(user: JwtPayload, expiresIn: string) {
     const secretToken = process.env.SECRET_TOKEN ?? '';
-    return jwt.sign({ userId }, secretToken, { expiresIn });
+    return jwt.sign(user, secretToken, { expiresIn });
   }
 
   static async registerUser(userData: UserInputDTO) {
