@@ -45,8 +45,6 @@ export default class BlogsController {
       const updatedBlog = await BlogService.update(blogId, {
         title,
         content,
-        userId,
-        userUserName,
       });
       if (!updatedBlog) {
         return res.status(404).json({ message: 'Blog not found' });
