@@ -141,8 +141,8 @@ Response
   "id": 1,
   "title": "Sample Blog Title",
   "content": "This is the content of the blog.",
-  "author_id": "user_uuid_here",
-  "created_at": "2023-08-17T12:34:56Z"
+  "authorId": "user_uuid_here",
+  "createdAt": "2023-08-17T12:34:56Z"
 }
 ```
 
@@ -156,8 +156,8 @@ Response
   "id": 1,
   "title": "Sample Blog Title",
   "content": "This is the content of the blog.",
-  "author_id": "user_uuid_here",
-  "created_at": "2023-08-17T12:34:56Z"
+  "authorId": "user_uuid_here",
+  "createdAt": "2023-08-17T12:34:56Z"
 }
 ```
 
@@ -180,8 +180,8 @@ json{
     "id": 1,
     "title": "Updated Blog Title",
     "content": "This is the updated content of the blog.",
-    "author_id": "user_uuid_here",
-    "created_at": "2023-08-17T12:34:56Z"
+    "authorId": "user_uuid_here",
+    "createdAt": "2023-08-17T12:34:56Z"
 }
 ```
 
@@ -198,8 +198,8 @@ Response
     "id": 1,
     "title": "Updated Blog Title",
     "content": "This is the updated content of the blog.",
-    "author_id": "user_uuid_here",
-    "created_at": "2023-08-17T12:34:56Z"
+    "authorId": "user_uuid_here",
+    "createdAt": "2023-08-17T12:34:56Z"
   }
 }
 ```
@@ -220,8 +220,8 @@ Response
       "id": 1,
       "title": "Sample Blog Title 1",
       "content": "This is the content of the first blog.",
-      "author_id": "user_uuid_here",
-      "created_at": "2023-08-17T12:34:56Z"
+      "authorId": "user_uuid_here",
+      "createdAt": "2023-08-17T12:34:56Z"
     }
     // ...
   ]
