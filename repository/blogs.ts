@@ -28,7 +28,7 @@ export default class BlogsRepository {
       },
     });
   }
-  static update(id: string, blog: Partial<UpdateBlogDTO>) {
+  static update(id: string, blog: UpdateBlogDTO) {
     return prisma.blog.update({
       where: {
         id: id,
