@@ -49,109 +49,155 @@ Implemented JWT-based for authentication and authorization. Only authenticated u
 
 Below are the endpoints implemented in the controller, along with their descriptions and sample requests and responses.
 
+### `POST /api/auth/login`
+
+User login.
+
+Request Body
+
+```json
+{
+  "email": "user@example.com",
+  "password": "secretpassword"
+}
+```
+
+Response
+
+```json
+{
+  "message": "Login successful",
+  "token": "your_generated_jwt_token_here"
+}
+```
+
+### `POST /api/auth/register`
+
+User registration.
+
+Request Body
+
+```json
+{
+  "username": "newuser",
+  "email": "newuser@example.com",
+  "password": "secretpassword",
+  "confirmPassword": "secretpassword"
+}
+```
+
+Response
+
+```json
+{
+  "message": "User registered successfully",
+  "token": "your_generated_jwt_token_here"
+}
+```
+
 ### `POST /api/blogs`
 
 Creates a new blog post.
 
-#### Request Body
+Request Body
 
-json
+```json
 {
-"title": "Sample Blog Title",
-"content": "This is the content of the blog."
+  "title": "Sample Blog Title",
+  "content": "This is the content of the blog."
 }
+```
+
 Response
-{
-"id": 1,
-"title": "Sample Blog Title",
-"content": "This is the content of the blog.",
-"author_id": "user_uuid_here",
-"created_at": "2023-08-17T12:34:56Z"
-}
 
-GET /api/blogs/:id
+```json
+{
+  "id": 1,
+  "title": "Sample Blog Title",
+  "content": "This is the content of the blog.",
+  "author_id": "user_uuid_here",
+  "created_at": "2023-08-17T12:34:56Z"
+}
+```
+
+### `GET /api/blogs/:id`
+
 Retrieves a single blog post by ID.
 Response
+
+```json
 {
-"id": 1,
-"title": "Sample Blog Title",
-"content": "This is the content of the blog.",
-"author_id": "user_uuid_here",
-"created_at": "2023-08-17T12:34:56Z"
+  "id": 1,
+  "title": "Sample Blog Title",
+  "content": "This is the content of the blog.",
+  "author_id": "user_uuid_here",
+  "created_at": "2023-08-17T12:34:56Z"
 }
-PUT /api/blogs/:id
+```
+
+### `PUT /api/blogs/:id`
+
 Updates a blog post.
 Request Body
+
+```json
 {
-"title": "Updated Blog Title",
-"content": "This is the updated content of the blog."
+  "title": "Updated Blog Title",
+  "content": "This is the updated content of the blog."
 }
+```
+
 Response
-{
-"id": 1,
-"title": "Updated Blog Title",
-"content": "This is the updated content of the blog.",
-"author_id": "user_uuid_here",
-"created_at": "2023-08-17T12:34:56Z"
+
+```
+json{
+    "id": 1,
+    "title": "Updated Blog Title",
+    "content": "This is the updated content of the blog.",
+    "author_id": "user_uuid_here",
+    "created_at": "2023-08-17T12:34:56Z"
 }
-DELETE /api/blogs/:id
+```
+
+### `DELETE /api/blogs/:id`
+
 Deletes a blog post.
 
 Response
+
+```json
 {
-"message": "Blog deleted successfully",
-"deletedBlog": {
-"id": 1,
-"title": "Updated Blog Title",
-"content": "This is the updated content of the blog.",
-"author_id": "user_uuid_here",
-"created_at": "2023-08-17T12:34:56Z"
+  "message": "Blog deleted successfully",
+  "deletedBlog": {
+    "id": 1,
+    "title": "Updated Blog Title",
+    "content": "This is the updated content of the blog.",
+    "author_id": "user_uuid_here",
+    "created_at": "2023-08-17T12:34:56Z"
+  }
 }
-}
-GET /api/blogs
+```
+
+### `GET /api/blogs`
+
 Retrieves a paginated list of all blog posts.
 
 Query Parameters
 page (optional): Page number (default: 1)
 pageSize (optional): Number of items per page (default: 10)
 Response
-{
-"blogs": [
-{
-"id": 1,
-"title": "Sample Blog Title 1",
-"content": "This is the content of the first blog.",
-"author_id": "user_uuid_here",
-"created_at": "2023-08-17T12:34:56Z"
-},
-// ...
-]
-}
-POST /api/auth/login
-User login.
 
-Request Body
+```json
 {
-"email": "user@example.com",
-"password": "secretpassword"
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Sample Blog Title 1",
+      "content": "This is the content of the first blog.",
+      "author_id": "user_uuid_here",
+      "created_at": "2023-08-17T12:34:56Z"
+    }
+    // ...
+  ]
 }
-Response
-{
-"message": "Login successful",
-"token": "your_generated_jwt_token_here"
-}
-POST /api/auth/register
-User registration.
-
-Request Body
-{
-"username": "newuser",
-"email": "newuser@example.com",
-"password": "secretpassword",
-"confirmPassword": "secretpassword"
-}
-Response
-{
-"message": "User registered successfully",
-"token": "your_generated_jwt_token_here"
-}
+```
