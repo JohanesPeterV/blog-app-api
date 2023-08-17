@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { PrismaClient } from '.prisma/client';
+import BlogsRepository from '../repository/blogs';
 
 const prisma = new PrismaClient();
 
@@ -11,10 +12,7 @@ const blogMiddleware = async (
   const blogId = req.params.id;
   const userId = req.userId;
   try {
-    const blog = await prisma.blog.findUnique({
-      where: { id: blogId },
-      select: { userId: true },
-    });
+    const blog = await BlogsRepository.getById(blogId);
 
     if (!blog) {
       return res.status(404).json({ message: 'Blog not found' });

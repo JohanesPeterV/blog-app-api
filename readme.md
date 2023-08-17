@@ -20,8 +20,33 @@ To run the application locally, follow these steps:
 
 The database schema include the following tables:
 
-- `users`: Stores user information including username, email, and password.
-- `blogs`: Stores blog posts with fields for title, content, author, creation date, and category.
+### `users` Table
+
+- `id`: Unique identifier for each user.
+- `userName`: User's chosen username.
+- `name`: User's full name.
+- `email`: User's email address.
+- `password`: Hashed password for user authentication.
+
+### `blogs` Table
+
+- `id`: Unique identifier for each blog post.
+- `title`: Title of the blog post.
+- `content`: Content of the blog post.
+- `UserId`: ID linking the blog post to the authoring user.
+- `userUserName`: Denormalized username of the blog post's author.
+- `createdAt`: Timestamp of blog post creation.
+- `updatedAt`: Timestamp of blog post's last update.
+
+## Denormalization and Performance Optimization
+
+The decision to include `userUserName` in the `blogs` table stems from the common requirement to display the author's username when viewing a blog post. This denormalization optimizes performance by eliminating the need for repeated joins to retrieve the username associated with each post. The `userUserName` field conveniently brings relevant user data directly into the `blogs` table.
+
+## Handling Future Username Changes
+
+To address future changes, like username updates, a practical solution has been designed. A scheduled background process, known as a sync job, synchronizes any username changes from the `users` table to the `userUserName` field in the `blogs` table. This approach ensures that if a user changes their username, their authored blog posts consistently reflect the new username starting from the next day. This strategy balances data integrity and performance optimization.
+
+By incorporating denormalization and planning for potential changes, the schema provides efficient data retrieval and a reliable mechanism to reflect user updates in the context of blog posts.
 
 ## Architecture and Layers
 
