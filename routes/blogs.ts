@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction, query } from 'express';
 import authMiddleware from '../middlewares/auth';
 import blogMiddleware from '../middlewares/blog';
 import BlogsController from '../controllers/blogs';
