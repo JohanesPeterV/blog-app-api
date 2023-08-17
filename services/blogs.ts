@@ -5,8 +5,11 @@ import { CreateBlogDTO } from '../models/dto/blog/create-blog.dto';
 import { UpdateBlogDTO } from '../models/dto/blog/update-blog.dto';
 
 export default class BlogService {
-  public static getAll(page: number, pageSize: number) {
-    return BlogsRepository.getAll(page, pageSize);
+  public static async getAll(page: number, pageSize: number) {
+    return {
+      blogs: await BlogsRepository.getAll(page, pageSize),
+      totalPage: Math.ceil((await BlogsRepository.getDataCount()) / pageSize),
+    };
   }
 
   public static add(blog: CreateBlogDTO) {

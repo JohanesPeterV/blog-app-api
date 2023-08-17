@@ -82,6 +82,6 @@ export default class BlogsController {
     const page = parseInt(req.query.page as string) || 1;
     const pageSize = parseInt(req.query.pageSize as string) || 10;
     const blogs = await BlogService.getAll(page, pageSize);
-    return res.status(200).json({ blogs });
+    return res.status(200).json(blogs);
   }
 }

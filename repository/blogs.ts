@@ -13,6 +13,9 @@ export default class BlogsRepository {
       take: pageSize,
     });
   }
+  static getDataCount() {
+    return prisma.blog.count();
+  }
   static add(blog: CreateBlogDTO) {
     return prisma.blog.create({
       data: {
