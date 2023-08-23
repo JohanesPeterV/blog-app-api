@@ -175,8 +175,8 @@ Request Body
 
 Response
 
-```
-json{
+```json
+{
     "id": 1,
     "title": "Updated Blog Title",
     "content": "This is the updated content of the blog.",
